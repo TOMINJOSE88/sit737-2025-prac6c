@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator Microservice</title>
+</head>
+<body>
+  <h1>Simple Calculator</h1>
+  <form id="calcForm">
+    <input type="number" id="num1" placeholder="Number 1" required>
+    <select id="operation">
+      <option value="add">+</option>
+      <option value="subtract">-</option>
+      <option value="multiply">*</option>
+      <option value="divide">/</option>
+      <option value="power">^</option>
+      <option value="modulo">%</option>
+      <option value="sqrt">√ (num1 only)</option>
+    </select>
+    <input type="number" id="num2" placeholder="Number 2">
+    <button type="submit">Calculate</button>
+  </form>
+
+  <h3 id="result"></h3>
+
+  <script>
+    document.getElementById('calcForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const num1 = document.getElementById('num1').value;
+      const num2 = document.getElementById('num2').value;
+      const op = document.getElementById('operation').value;
+
+      let url = `/${op}?num1=${num1}`;
+      if (op !== 'sqrt') url += `&num2=${num2}`;
+
+      const res = await fetch(url);
+      const data = await res.json();
+      document.getElementById('result').innerText = 'Result: ' + data.result;
+    });
+  </script>
+</body>
+</html>
