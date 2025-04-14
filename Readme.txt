@@ -71,6 +71,6 @@ Step 6: Access the Application
 If running locally with Docker Desktop, use:
 kubectl port-forward service/calculator-service 9090:8080
 Then open:
-👉 http://localhost:9090
+http://localhost:9090
 
 This will load the frontend index.html interface and allow direct interactions with the calculator microservice.
